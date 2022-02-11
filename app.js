@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const connectDB = require('./database/db');
 const userRoute = require('./routes/UserRoutes');
-
+const productRoute = require('./routes/ProductRoutes');
 const notFound = require('./middlewares/not-found');
 const errorHandler = require('./middlewares/error-handler');
 
@@ -15,6 +15,7 @@ connectDB();
 
 //routes
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/product", productRoute);
 
 app.get('/', (req, res, next) => {
     res.send('API is working');

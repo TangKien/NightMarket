@@ -34,10 +34,6 @@ const login = asyncWrapper(async (req, res) => {
     res.status(200).json({ user: user , token});
 })
 
-<<<<<<< HEAD
-
-module.exports = { register, login };
-=======
 const updateUser = asyncWrapper(async(req,res) => {
     const user = await User.findById(req.user._id);
     if (user){
@@ -55,4 +51,3 @@ const updateUser = asyncWrapper(async(req,res) => {
     }
 })
 module.exports = { register, login , updateUser };
->>>>>>> 50fd2fe27ee804b21cb9518a5b6de6b0dedb4be2
