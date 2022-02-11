@@ -1,4 +1,5 @@
 const asyncWrapper = require('../middlewares/asyncWrapper');
+const { findById } = require('../models/UserModel');
 const User = require('../models/UserModel');
 
 const register = asyncWrapper(async (req, res) => {
@@ -33,5 +34,25 @@ const login = asyncWrapper(async (req, res) => {
     res.status(200).json({ user: user , token});
 })
 
+<<<<<<< HEAD
 
 module.exports = { register, login };
+=======
+const updateUser = asyncWrapper(async(req,res) => {
+    const user = await User.findById(req.user._id);
+    if (user){
+        user.username = req.body.username || user.username;
+        user.email = req.body.email || user.email;
+        user.contact = req.body.contact || user.contact;
+        if (req.body.password){
+            user.password = req.body.password;
+        }
+        const updatedUser = await user.save();
+        const token = updatedUser.createJWT();
+        res.status(200).json({user: updatedUser, token});
+    } else {
+        throw new Error('User not found');
+    }
+})
+module.exports = { register, login , updateUser };
+>>>>>>> 50fd2fe27ee804b21cb9518a5b6de6b0dedb4be2
