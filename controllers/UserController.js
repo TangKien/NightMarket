@@ -33,4 +33,5 @@ const login = asyncWrapper(async (req, res) => {
     res.status(200).json({ user: user , token});
 })
 
+
 module.exports = { register, login };
